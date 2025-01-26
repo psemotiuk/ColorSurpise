@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import AnimationToggle from "@/components/AnimationToggle";
 
 const RGB_MAX_VALUE = 256;
 const ANIMATION_DURATION = 500;
@@ -24,6 +25,10 @@ const Index = () => {
     toRgbString(initialBgColorArray)
   );
 
+  const [isAnimated, setIsAnimated] = useState(false);
+
+  const ViewRenderComponent = isAnimated ? Animated.View : View;
+
   const handleChangeBg = () => {
     const rgbColorArray = Array.from({ length: 3 }, () =>
       Math.floor(RGB_MAX_VALUE * Math.random())
@@ -41,17 +46,21 @@ const Index = () => {
     };
   }, []);
 
+  const toggleSwitch = () => setIsAnimated((previousState) => !previousState);
+
   return (
     <Pressable style={{ flex: 1 }} onPress={handleChangeBg}>
-      <Animated.View
+      <ViewRenderComponent
         style={[
           styles.container,
-          { backgroundColor: currentColor },
-          bgColorChangeAnimated,
+          isAnimated
+            ? bgColorChangeAnimated
+            : { backgroundColor: currentColor },
         ]}
       >
+        <AnimationToggle isEnabled={isAnimated} onChange={toggleSwitch} />
         <Text style={styles.text}>Hello there</Text>
-      </Animated.View>
+      </ViewRenderComponent>
     </Pressable>
   );
 };
@@ -59,11 +68,13 @@ const Index = () => {
 const styles = StyleSheet.create({
   text: {
     fontSize: 32,
+    fontWeight: 500,
   },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    position: "relative",
   },
 });
 
