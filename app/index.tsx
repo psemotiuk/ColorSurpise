@@ -6,6 +6,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import AnimationToggle from "@/components/AnimationToggle";
+import ColorClipboard from "@/components/ColorClipboard";
 
 const RGB_MAX_VALUE = 256;
 const ANIMATION_DURATION = 500;
@@ -59,6 +60,7 @@ const Index = () => {
         ]}
       >
         <AnimationToggle isEnabled={isAnimated} onChange={toggleSwitch} />
+        <ColorClipboard currentColor={currentColor} />
         <Text style={styles.text}>Hello there</Text>
       </ViewRenderComponent>
     </Pressable>
@@ -69,6 +71,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 32,
     fontWeight: 500,
+    paddingBottom: 8,
   },
   container: {
     flex: 1,
