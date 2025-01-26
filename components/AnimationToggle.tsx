@@ -21,10 +21,7 @@ const AnimationToggle = ({ isEnabled, onChange }: Props) => {
 const styles = StyleSheet.create({
   switchContainer: {
     flexDirection: "row",
-    position: "absolute",
     alignItems: "center",
-    top: 16,
-    right: 16,
     gap: 8,
   },
   configItemText: {
