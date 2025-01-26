@@ -13,6 +13,7 @@ const AnimationToggle = ({ isEnabled, onChange }: Props) => {
         onValueChange={onChange}
         value={isEnabled}
         ios_backgroundColor={"#000"}
+        accessibilityLabel="Animation controll toggle"
       />
     </View>
   );

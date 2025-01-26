@@ -32,7 +32,7 @@ const Index = () => {
 
   const ViewRenderComponent = isAnimated ? Animated.View : View;
 
-  const handleChangeBg = () => {
+  const changeBackgroundColor = () => {
     const rgbColorArray = Array.from({ length: 3 }, () =>
       Math.floor(RGB_MAX_VALUE * Math.random())
     );
@@ -53,7 +53,7 @@ const Index = () => {
   const toggleSwitch = () => setIsAnimated((previousState) => !previousState);
 
   return (
-    <Pressable style={{ flex: 1 }} onPress={handleChangeBg}>
+    <Pressable style={{ flex: 1 }} onPress={changeBackgroundColor}>
       <ViewRenderComponent
         style={[
           styles.container,
